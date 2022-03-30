@@ -66,8 +66,6 @@ public class DAO {
             resultSet = statement.executeQuery(sql);
         } catch (SQLException e) {
             throw new Exception("Error al consultar");
-        }finally{
-            disconnectDatabase();
         }
     }
     

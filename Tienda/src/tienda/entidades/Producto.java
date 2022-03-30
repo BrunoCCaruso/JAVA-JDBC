@@ -48,10 +48,13 @@ public class Producto {
     }
 
     public void setFabricante(Fabricante fabricante) {
-        this.fabricante = fabricante;
+        this.fabricante=fabricante;
     }
 
-    
+    @Override
+    public String toString() {
+        return String.format("Producto (codigo: %s, nombre: %s, precio: %s, fabricante: %s)", codigo, nombre, precio, fabricante);
+    }
     
     
     

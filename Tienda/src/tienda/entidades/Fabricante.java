@@ -42,7 +42,10 @@ public class Fabricante {
     }
     
     
-    
+    @Override
+    public String toString() {
+        return String.format("Fabricante (codigo: %s, nombre: %s, producto: %s )", codigo, nombre, producto);
+    }
     
     
     
