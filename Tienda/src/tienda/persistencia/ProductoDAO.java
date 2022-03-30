@@ -173,6 +173,59 @@ public class ProductoDAO extends DAO {
             throw new Exception("Error al guardar producto");
         }
     }
+    
+    public void modificarProducto(Producto prod) throws Exception {
+        try {
+            if (prod == null) {
+                throw new Exception("El producto no puede ser nulo");
+            }            
+            String template = "UPDATE product SET nombre = '%s', precio = '%s' WHERE codigo = %s;";
+            String sql = String.format(template, prod.getNombre(), prod.getPrecio(), prod.getCodigo());
+            
+            insertModifyDelete(sql);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new Exception("Error al modificar producto");
+        }
+    }
+    
+    public List<Producto> conseguirProductoPorCodigo(int codigo) throws Exception{
+        try {
+
+            String sql = "SELECT * FROM producto INNER JOIN fabricante ON fabricante.codigo = producto.codigo_fabricante WHERE producto.codigo = "+codigo+";";
+
+            queryDatabase(sql);
+
+            List<Producto> listaProducto = new ArrayList<>();
+            Producto product=null;
+            Fabricante fabr = null;
+            while (resultSet.next()) {               
+                product = new Producto();
+                fabr = new Fabricante();                
+                
+                product.setCodigo(resultSet.getInt(1));
+                product.setNombre(resultSet.getString(2));                
+                product.setPrecio(resultSet.getDouble(3));
+                
+                fabr.setCodigo(resultSet.getInt(5));
+                fabr.setNombre(resultSet.getString(6));
+                
+                product.setFabricante(fabr);                               
+                               
+                listaProducto.add(product);
+
+            }
+
+            return listaProducto;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw new Exception("Error al conseguir producto");
+        }finally {
+            disconnectDatabase();
+        }
+        
+    }
        
     
     

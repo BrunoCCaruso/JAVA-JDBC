@@ -77,7 +77,7 @@ public class TiendaServicios {
                     menu();
                     break;
                 case "h":
-
+                    prodServ.editarProducto();
                     menu();
                     break;
                 case "i":
