@@ -61,19 +61,19 @@ public class TiendaServicios {
                     menu();
                     break;
                 case "d":
-
+                    prodServ.traerProductosPortatiles();
                     menu();
                     break;
                 case "e":
-
+                    prodServ.traerProductoMenorPrecio();
                     menu();
                     break;
                 case "f":
-
+                    prodServ.crearProducto();
                     menu();
                     break;
                 case "g":
-
+                   fabrServ.crearFabricante();    
                     menu();
                     break;
                 case "h":
